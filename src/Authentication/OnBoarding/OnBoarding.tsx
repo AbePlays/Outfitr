@@ -1,6 +1,11 @@
 import React, { useRef } from "react";
-import { Dimensions, StyleSheet, Text, View } from "react-native";
-import Animated, { divide, multiply } from "react-native-reanimated";
+import { Dimensions, StyleSheet, Image, View } from "react-native";
+import Animated, {
+  divide,
+  Extrapolate,
+  interpolate,
+  multiply,
+} from "react-native-reanimated";
 import { interpolateColor, onScrollEvent, useValue } from "react-native-redash";
 
 import Slide, { SLIDE_HEIGHT, BORDER_RADIUS } from "./Slide";
@@ -29,6 +34,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  underlay: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: "flex-end",
+    alignItems: "center",
+    borderBottomRightRadius: BORDER_RADIUS,
+    overflow: "hidden",
+  },
 });
 
 const slides = [
@@ -38,7 +50,11 @@ const slides = [
     description:
       "Confused about your outfit? Dont't worry! Find the best outfit here!",
     color: "#BFEAF5",
-    picture: require("../../../assets/1.png"),
+    picture: {
+      src: require("../../../assets/1.png"),
+      width: 2513,
+      height: 3583,
+    },
   },
   {
     title: "Playful",
@@ -46,7 +62,11 @@ const slides = [
     description:
       "Hating the clothes in your wardrobes? Explore hundreds of outfits ideas",
     color: "#BEECC4",
-    picture: require("../../../assets/2.png"),
+    picture: {
+      src: require("../../../assets/2.png"),
+      width: 2791,
+      height: 3744,
+    },
   },
   {
     title: "Excentric",
@@ -54,7 +74,11 @@ const slides = [
     description:
       "Create your individual & unique style and look amazing everyday",
     color: "#FFE4D9",
-    picture: require("../../../assets/3.png"),
+    picture: {
+      src: require("../../../assets/3.png"),
+      width: 2738,
+      height: 3244,
+    },
   },
   {
     title: "Funky",
@@ -62,7 +86,11 @@ const slides = [
     description:
       "Discover the latest trends in fashin and explore your personality",
     color: "#FFDDDD",
-    picture: require("../../../assets/4.png"),
+    picture: {
+      src: require("../../../assets/4.png"),
+      width: 1757,
+      height: 2551,
+    },
   },
 ];
 
@@ -78,6 +106,30 @@ const OnBoarding = () => {
   return (
     <View style={styles.container}>
       <Animated.View style={[styles.slider, { backgroundColor }]}>
+        {slides.map((slide, index) => {
+          const opacity = interpolate(x, {
+            inputRange: [
+              (index - 0.5) * width,
+              index * width,
+              (index + 0.5) * width,
+            ],
+            outputRange: [0, 1, 0],
+            extrapolate: Extrapolate.CLAMP,
+          });
+          return (
+            <Animated.View style={[styles.underlay, { opacity }]} key={index}>
+              <Image
+                source={slide.picture.src}
+                style={{
+                  width: width - BORDER_RADIUS,
+                  height:
+                    ((width - BORDER_RADIUS) * slide.picture.height) /
+                    slide.picture.width,
+                }}
+              />
+            </Animated.View>
+          );
+        })}
         <Animated.ScrollView
           ref={scroll}
           horizontal
@@ -89,12 +141,7 @@ const OnBoarding = () => {
           {...{ onScroll }}
         >
           {slides.map((slide, index) => (
-            <Slide
-              key={index}
-              title={slide.title}
-              right={index % 2 !== 0}
-              picture={slide.picture}
-            />
+            <Slide key={index} title={slide.title} right={index % 2 !== 0} />
           ))}
         </Animated.ScrollView>
       </Animated.View>
