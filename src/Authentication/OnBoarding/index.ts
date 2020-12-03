@@ -1,1 +1,1 @@
-export { default as OnBoarding } from "./OnBoarding";
+export { default } from "./OnBoarding";
