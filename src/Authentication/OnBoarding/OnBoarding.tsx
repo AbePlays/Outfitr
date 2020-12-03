@@ -8,16 +8,18 @@ import Animated, {
 } from "react-native-reanimated";
 import { interpolateColor, onScrollEvent, useValue } from "react-native-redash";
 
-import Slide, { SLIDE_HEIGHT, BORDER_RADIUS } from "./Slide";
+import Slide, { SLIDE_HEIGHT } from "./Slide";
 import Subslide from "./Subslides";
 import Dot from "./Dot";
+import { theme } from "../../components";
+import { Routes, StackNavigationProps } from "../../components/Navigation";
 
 const { width } = Dimensions.get("window");
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "white" },
   slider: {
     height: SLIDE_HEIGHT,
-    borderBottomRightRadius: BORDER_RADIUS,
+    borderBottomRightRadius: theme.borderRadii.xl,
   },
   footer: {
     flex: 1,
@@ -25,11 +27,11 @@ const styles = StyleSheet.create({
   footerContent: {
     flex: 1,
     backgroundColor: "white",
-    borderTopLeftRadius: BORDER_RADIUS,
+    borderTopLeftRadius: theme.borderRadii.xl,
   },
   pagination: {
     ...StyleSheet.absoluteFillObject,
-    height: BORDER_RADIUS,
+    height: theme.borderRadii.xl,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
@@ -38,7 +40,7 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     justifyContent: "flex-end",
     alignItems: "center",
-    borderBottomRightRadius: BORDER_RADIUS,
+    borderBottomRightRadius: theme.borderRadii.xl,
     overflow: "hidden",
   },
 });
@@ -94,7 +96,9 @@ const slides = [
   },
 ];
 
-const OnBoarding = () => {
+const OnBoarding = ({
+  navigation,
+}: StackNavigationProps<Routes, "OnBoarding">) => {
   const scroll = useRef<Animated.ScrollView>(null);
   const x = useValue(0);
   const onScroll = onScrollEvent({ x });
@@ -121,9 +125,9 @@ const OnBoarding = () => {
               <Image
                 source={slide.picture.src}
                 style={{
-                  width: width - BORDER_RADIUS,
+                  width: width - theme.borderRadii.xl,
                   height:
-                    ((width - BORDER_RADIUS) * slide.picture.height) /
+                    ((width - theme.borderRadii.xl) * slide.picture.height) /
                     slide.picture.width,
                 }}
               />
@@ -163,21 +167,26 @@ const OnBoarding = () => {
               transform: [{ translateX: multiply(x, -1) }],
             }}
           >
-            {slides.map((slide, index) => (
-              <Subslide
-                key={index}
-                subtitle={slide.subtitle}
-                description={slide.description}
-                last={index === slides.length - 1}
-                onPress={() => {
-                  if (scroll.current) {
-                    scroll.current
-                      .getNode()
-                      .scrollTo({ x: width * (index + 1), animated: true });
-                  }
-                }}
-              />
-            ))}
+            {slides.map((slide, index) => {
+              const last = index === slides.length - 1;
+              return (
+                <Subslide
+                  key={index}
+                  subtitle={slide.subtitle}
+                  description={slide.description}
+                  last={last}
+                  onPress={() => {
+                    if (last) {
+                      navigation.navigate("Welcome");
+                    } else if (scroll.current) {
+                      scroll.current
+                        .getNode()
+                        .scrollTo({ x: width * (index + 1), animated: true });
+                    }
+                  }}
+                />
+              );
+            })}
           </Animated.View>
         </Animated.View>
       </View>

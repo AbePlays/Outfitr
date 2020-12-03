@@ -1,5 +1,4 @@
 import React from "react";
-import { View } from "react-native";
 import Animated, { Extrapolate, interpolate } from "react-native-reanimated";
 
 interface DotProps {
