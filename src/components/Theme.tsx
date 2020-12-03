@@ -7,7 +7,7 @@ const theme = {
     text: "rgba(12, 13, 52, 0.7)",
     white: "white",
     grey: "rgba(12, 13, 52, 0.05)",
-    "slide.grey": "#f4f0ef",
+    danger: "red",
   },
   spacing: {
     s: 8,
