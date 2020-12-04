@@ -1,5 +1,5 @@
 import React from "react";
-import { Linking } from "react-native";
+import * as Linking from "expo-linking";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -19,7 +19,7 @@ const ForgotPassword = ({
     <Footer
       title="Doesn't work?"
       action="Try another way"
-      onPress={() => Linking.openURL("mailto:help@support.com")}
+      onPress={() => Linking.openURL("mailto: help@support.com")}
     />
   );
   const { handleChange, handleBlur, handleSubmit, errors, touched } = useFormik(
@@ -27,7 +27,7 @@ const ForgotPassword = ({
       initialValues: {
         email: "",
       },
-      onSubmit: (values) => console.log(values),
+      onSubmit: () => navigation.navigate("PasswordChanged"),
       validationSchema: ForgotPasswordSchema,
     }
   );
