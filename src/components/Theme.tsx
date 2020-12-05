@@ -61,6 +61,12 @@ export const theme = {
       fontWeight: "500",
       color: "text",
     },
+    header: {
+      fontSize: 12,
+      fontWeight: "600",
+      lineHeight: 24,
+      color: "secondary",
+    },
   },
   breakpoints: {},
 };

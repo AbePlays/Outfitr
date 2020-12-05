@@ -17,11 +17,11 @@ export default function App() {
       <NavigationContainer>
         <SafeAreaProvider>
           <AppStack.Navigator headerMode="none">
+            <AppStack.Screen name="Home" component={HomeNavigator} />
             <AppStack.Screen
               name="Authentication"
               component={AuthenticationNavigator}
             />
-            <AppStack.Screen name="Home" component={HomeNavigator} />
           </AppStack.Navigator>
         </SafeAreaProvider>
       </NavigationContainer>

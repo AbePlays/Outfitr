@@ -1,13 +1,14 @@
 import React from "react";
-import { Dimensions, Image, StyleSheet } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Dimensions, Image } from "react-native";
 
-import { Box, RoundedIconButton, Text } from "../../components";
+import { Box, Header, Text } from "../../components";
+import { theme } from "../../components/Theme";
 import DrawerItem, { DrawerItemProps } from "./DrawerItem";
 
 const { width } = Dimensions.get("window");
-export const DRAWER_WIDTH = width * 0.8;
 const aspectRatio = 750 / 1125;
+const drawerBackground = require("../../../assets/drawer.png");
+export const DRAWER_WIDTH = width * 0.8;
 const height = DRAWER_WIDTH * aspectRatio;
 const items: DrawerItemProps[] = [
   {
@@ -61,32 +62,16 @@ const Drawer = () => {
           left={0}
           borderBottomRightRadius="xl"
           backgroundColor="secondary"
-          flexDirection="row"
-          paddingTop="xl"
-          paddingHorizontal="m"
-          justifyContent="space-between"
-          // style={{ paddingTop: insets.top }}
         >
-          <RoundedIconButton
-            size={24}
-            name="x"
-            color="white"
-            backgroundColor="secondary"
-            onPress={() => true}
-          />
-          <Text color="white">MY PROFILE</Text>
-          <RoundedIconButton
-            size={24}
-            name="shopping-bag"
-            color="white"
-            backgroundColor="secondary"
-            onPress={() => true}
+          <Header
+            title="Menu"
+            left={{ icon: "x", onPress: () => true }}
+            right={{ icon: "shopping-bag", onPress: () => true }}
           />
         </Box>
       </Box>
       <Box flex={0.8}>
         <Box flex={1} backgroundColor="secondary"></Box>
-        <Box flex={1} backgroundColor="primary"></Box>
         <Box
           position="absolute"
           top={0}
@@ -104,12 +89,11 @@ const Drawer = () => {
             top={-50}
             left={DRAWER_WIDTH / 2 - 50}
             backgroundColor="primary"
-            alignSelf="center"
             width={100}
             height={100}
             style={{ borderRadius: 50 }}
           />
-          <Box marginVertical="xl">
+          <Box marginVertical="m">
             <Text variant="title1" textAlign="center">
               Abe The Babe
             </Text>
@@ -129,11 +113,11 @@ const Drawer = () => {
         height={height * 0.61}
       >
         <Image
-          source={require("../../../assets/pattern1.png")}
+          source={drawerBackground}
           style={{
-            ...StyleSheet.absoluteFillObject,
-            width: undefined,
-            height: undefined,
+            width: DRAWER_WIDTH,
+            height,
+            borderTopLeftRadius: theme.borderRadii.xl,
           }}
         />
       </Box>
