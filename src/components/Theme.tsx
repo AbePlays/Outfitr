@@ -14,6 +14,10 @@ export const theme = {
     white: "white",
     grey: "rgba(12, 13, 52, 0.05)",
     danger: "red",
+    orange: "orange",
+    yellow: "yellow",
+    pink: "pink",
+    violet: "violet",
   },
   spacing: {
     s: 8,
