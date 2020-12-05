@@ -8,15 +8,22 @@ import { Box, useTheme } from "./Theme";
 const { width, height: wHeight } = Dimensions.get("window");
 const aspectRatio = 750 / 1125;
 const height = width * aspectRatio;
+const images = [
+  require("../../assets/pattern1.png"),
+  require("../../assets/pattern2.png"),
+  require("../../assets/pattern3.png"),
+];
 
 interface ContainerProps {
   children: ReactNode;
   footer: ReactNode;
+  pattern: 0 | 1 | 2;
 }
 
-const Container = ({ children, footer }: ContainerProps) => {
+const Container = ({ children, footer, pattern }: ContainerProps) => {
   const insets = useSafeAreaInsets();
   const theme = useTheme();
+  const asset = images[pattern];
   return (
     <KeyboardAwareScrollView scrollEnabled={false}>
       <Box height={wHeight} backgroundColor="secondary">
@@ -28,7 +35,7 @@ const Container = ({ children, footer }: ContainerProps) => {
             height={height * 0.61}
           >
             <Image
-              source={require("../../assets/pattern1.png")}
+              source={asset}
               style={{
                 width,
                 height,

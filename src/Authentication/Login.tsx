@@ -44,7 +44,7 @@ const Login = ({ navigation }: StackNavigationProps<Routes, "Login">) => {
     validationSchema: LoginSchema,
   });
   return (
-    <Container footer={footer}>
+    <Container footer={footer} pattern={0}>
       <Box padding="xl">
         <Text variant="title1" textAlign="center" marginBottom="l">
           Welcome back
