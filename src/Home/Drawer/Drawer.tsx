@@ -50,7 +50,6 @@ const items: DrawerItemProps[] = [
 ];
 
 const Drawer = () => {
-  // const insets = useSafeAreaInsets();
   return (
     <Box flex={1}>
       <Box flex={0.2} backgroundColor="white">
@@ -64,8 +63,12 @@ const Drawer = () => {
           backgroundColor="secondary"
         >
           <Header
+            dark
             title="Menu"
-            left={{ icon: "x", onPress: () => true }}
+            left={{
+              icon: "x",
+              onPress: () => true,
+            }}
             right={{ icon: "shopping-bag", onPress: () => true }}
           />
         </Box>
