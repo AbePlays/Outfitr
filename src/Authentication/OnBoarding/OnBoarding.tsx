@@ -13,7 +13,10 @@ import Subslide from "./Subslides";
 import Dot from "./Dot";
 import { useTheme, makeStyles } from "../../components";
 import { Theme } from "../../components/Theme";
-import { Routes, StackNavigationProps } from "../../components/Navigation";
+import {
+  AuthenticationRoutes,
+  StackNavigationProps,
+} from "../../components/Navigation";
 
 const { width } = Dimensions.get("window");
 
@@ -100,7 +103,7 @@ const slides = [
 
 const OnBoarding = ({
   navigation,
-}: StackNavigationProps<Routes, "OnBoarding">) => {
+}: StackNavigationProps<AuthenticationRoutes, "OnBoarding">) => {
   const styles = useStyle();
   const theme = useTheme();
   const scroll = useRef<Animated.ScrollView>(null);

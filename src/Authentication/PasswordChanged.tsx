@@ -1,5 +1,4 @@
 import React from "react";
-import { Feather as Icon } from "@expo/vector-icons";
 
 import {
   Box,
@@ -9,12 +8,15 @@ import {
   RoundedIconButton,
   RoundedIcon,
 } from "../components";
-import { Routes, StackNavigationProps } from "../components/Navigation";
+import {
+  AuthenticationRoutes,
+  StackNavigationProps,
+} from "../components/Navigation";
 
 const SIZE = 80;
 const PasswordChanged = ({
   navigation,
-}: StackNavigationProps<Routes, "PasswordChanged">) => {
+}: StackNavigationProps<AuthenticationRoutes, "PasswordChanged">) => {
   return (
     <Container
       pattern={0}
@@ -30,26 +32,26 @@ const PasswordChanged = ({
         </Box>
       }
     >
-      <Box flex={1} justifyContent="center" alignItems="center" padding="xl">
+      <Box alignSelf="center">
         <RoundedIcon
           name="check"
           size={SIZE}
           backgroundColor="primaryLight"
           color="primary"
         />
-        <Text variant="title1" textAlign="center" marginVertical="l">
-          Your password was successfully changed
-        </Text>
-        <Text variant="body" textAlign="center" marginBottom="l">
-          Close the window and try again
-        </Text>
-        <Box alignItems="center" marginTop="m">
-          <Button
-            variant="primary"
-            label="Login again"
-            onPress={() => navigation.navigate("Login")}
-          />
-        </Box>
+      </Box>
+      <Text variant="title1" textAlign="center" marginVertical="l">
+        Your password was successfully changed
+      </Text>
+      <Text variant="body" textAlign="center" marginBottom="l">
+        Close the window and try again
+      </Text>
+      <Box alignItems="center" marginTop="m">
+        <Button
+          variant="primary"
+          label="Login again"
+          onPress={() => navigation.navigate("Login")}
+        />
       </Box>
     </Container>
   );

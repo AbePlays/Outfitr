@@ -7,13 +7,9 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { theme } from "./src/components/Theme";
 import { AuthenticationNavigator } from "./src/Authentication";
 import { HomeNavigator } from "./src/Home";
+import { AppRoutes } from "./src/components/Navigation";
 
-type AppStackRoutes = {
-  Authentication: undefined;
-  Home: undefined;
-};
-
-const AppStack = createStackNavigator<AppStackRoutes>();
+const AppStack = createStackNavigator<AppRoutes>();
 
 export default function App() {
   return (
