@@ -41,7 +41,7 @@ const Login = ({ navigation }: StackNavigationProps<Routes, "Login">) => {
       password: "",
       remember: true,
     },
-    onSubmit: (values) => console.log(values),
+    onSubmit: () => navigation.navigate("Home"),
     validationSchema: LoginSchema,
   });
   return (

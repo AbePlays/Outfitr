@@ -1,5 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
+
 import { Routes } from "../components/Navigation";
 import OnBoarding from "./OnBoarding";
 import Welcome from "./Welcome";
