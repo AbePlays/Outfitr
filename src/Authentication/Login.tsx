@@ -4,8 +4,8 @@ import * as Yup from "yup";
 
 import { Button, Container, Text } from "../components";
 import { Box } from "../components/Theme";
-import Checkbox from "./components/Form/Checkbox";
-import TextInput from "./components/Form/TextInput";
+import Checkbox from "../components/Form/Checkbox";
+import TextInput from "../components/Form/TextInput";
 import Footer from "./components/Footer";
 import { Routes, StackNavigationProps } from "../components/Navigation";
 

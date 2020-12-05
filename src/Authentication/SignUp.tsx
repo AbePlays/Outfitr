@@ -4,7 +4,7 @@ import * as Yup from "yup";
 
 import { Button, Container, Text } from "../components";
 import { Box } from "../components/Theme";
-import TextInput from "./components/Form/TextInput";
+import TextInput from "../components/Form/TextInput";
 import Footer from "./components/Footer";
 import { Routes, StackNavigationProps } from "../components/Navigation";
 
@@ -37,7 +37,10 @@ const SignUp = ({ navigation }: StackNavigationProps<Routes, "SignUp">) => {
         confirmPassword: "",
         remember: true,
       },
-      onSubmit: (values) => console.log(values),
+      // onSubmit: () => navigation.navigate("Home"),
+      onSubmit: () => {
+        console.log("Bruh");
+      },
       validationSchema: SignUpSchema,
     }
   );
