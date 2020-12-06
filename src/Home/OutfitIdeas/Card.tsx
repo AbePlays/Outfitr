@@ -62,7 +62,7 @@ const Card = ({ position, onSwipe, source, step }: CardProps) => {
 
   return (
     <Box
-      style={StyleSheet.absoluteFillObject}
+      style={StyleSheet.absoluteFill}
       justifyContent="center"
       alignItems="center"
     >
