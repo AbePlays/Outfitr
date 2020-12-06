@@ -29,6 +29,7 @@ export type AuthenticationRoutes = {
 export type HomeRoutes = {
   OutfitIdeas: undefined;
   FavoriteOutfits: undefined;
+  TransactionHistory: undefined;
 };
 
 export type AppRoutes = {
