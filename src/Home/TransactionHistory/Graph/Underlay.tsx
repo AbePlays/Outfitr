@@ -13,10 +13,13 @@ interface UnderlayProps {
   minY: number;
   maxY: number;
   step: number;
+  minX: number;
+  maxX: number;
 }
 
-const Underlay = ({ dates, minY, maxY, step }: UnderlayProps) => {
+const Underlay = ({ dates, minY, maxY, step, minX, maxX }: UnderlayProps) => {
   const theme = useTheme();
+  const numberOfMonths = new Date(maxX - minX).getMonth();
   return (
     <Box style={StyleSheet.absoluteFill}>
       <Box flex={1} justifyContent="space-between">
@@ -52,13 +55,16 @@ const Underlay = ({ dates, minY, maxY, step }: UnderlayProps) => {
         flexDirection="row"
         alignItems="center"
       >
-        {dates.map((date, index) => (
-          <Box key={index} width={step}>
-            <Text color="darkGrey" textAlign="center">
-              {formatter.format(new Date(date))}
-            </Text>
-          </Box>
-        ))}
+        {new Array(numberOfMonths)
+          .fill(0)
+          .map((_, i) => new Date(minX))
+          .map((date, index) => (
+            <Box key={index} width={step}>
+              <Text color="darkGrey" textAlign="center">
+                {formatter.format(new Date(date))}
+              </Text>
+            </Box>
+          ))}
       </Box>
     </Box>
   );

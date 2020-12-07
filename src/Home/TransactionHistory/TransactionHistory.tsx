@@ -1,44 +1,31 @@
 import React from "react";
+import { ScrollView } from "react-native";
 
 import { Box, Header, Text } from "../../components";
 import { HomeNavigationProps } from "../../components/Navigation";
 import Graph, { DataPoint } from "./Graph";
+import Transaction from "./Transaction";
 
+const minDate = new Date("2019-09-01").getTime();
+const maxDate = new Date("2020-03-01").getTime();
 const data: DataPoint[] = [
-  {
-    date: new Date("2019-09-01").getTime(),
-    value: 0,
-    color: "primary",
-  },
-  {
-    date: new Date("2019-10-01").getTime(),
-    value: 0,
-    color: "primary",
-  },
   {
     date: new Date("2019-11-01").getTime(),
     value: 139.42,
     color: "primary",
+    id: 123458,
   },
   {
     date: new Date("2019-12-01").getTime(),
     value: 281.23,
     color: "orange",
-  },
-  {
-    date: new Date("2020-01-01").getTime(),
-    value: 0,
-    color: "primary",
+    id: 123459,
   },
   {
     date: new Date("2020-02-01").getTime(),
     value: 198.54,
     color: "yellow",
-  },
-  {
-    date: new Date("2020-03-01").getTime(),
-    value: 0,
-    color: "primary",
+    id: 123451,
   },
 ];
 
@@ -52,7 +39,7 @@ const TransactionHistory = ({
         left={{ icon: "menu", onPress: () => navigation.openDrawer() }}
         right={{ icon: "share", onPress: () => true }}
       />
-      <Box padding="m">
+      <Box padding="m" flex={1}>
         <Box
           flexDirection="row"
           justifyContent="space-between"
@@ -68,7 +55,12 @@ const TransactionHistory = ({
             <Text color="primary">All Time</Text>
           </Box>
         </Box>
-        <Graph data={data} />
+        <Graph data={data} minDate={minDate} maxDate={maxDate} />
+        <ScrollView>
+          {data.map((item) => (
+            <Transaction key={item.id} item={item} />
+          ))}
+        </ScrollView>
       </Box>
     </Box>
   );

@@ -53,6 +53,11 @@ export const theme = {
       fontWeight: "600",
       color: "secondary",
     },
+    title3: {
+      fontSize: 16,
+      fontWeight: "600",
+      color: "secondary",
+    },
     body: {
       fontSize: 16,
       lineHeight: 24,
