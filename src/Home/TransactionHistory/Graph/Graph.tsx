@@ -1,5 +1,6 @@
 import React from "react";
 import { Dimensions } from "react-native";
+import moment from "moment";
 
 import { Box, useTheme } from "../../../components";
 import { Theme } from "../../../components/Theme";
@@ -18,35 +19,34 @@ export interface DataPoint {
 
 interface GraphProps {
   data: DataPoint[];
-  minDate: number;
-  maxDate: number;
+  startDate: number;
+  numberOfMonths: number;
 }
 
-const Graph = ({ data, minDate, maxDate }: GraphProps) => {
+const Graph = ({ data, startDate, numberOfMonths }: GraphProps) => {
   const theme = useTheme();
-  const numberOfMonths = new Date(maxDate - minDate).getMonth();
   const canvasWidth = wWidth - theme.spacing.m * 2;
   const canvasHeight = canvasWidth * aspectRatio;
   const width = canvasWidth - theme.spacing[MARGIN];
   const height = canvasHeight - theme.spacing[MARGIN];
   const values = data.map((item) => item.value);
-  const dates = data.map((item) => item.date);
   const minY = Math.min(...values);
   const maxY = Math.max(...values);
   const step = width / numberOfMonths;
   return (
     <Box paddingBottom={MARGIN} paddingLeft={MARGIN} marginTop="xl">
       <Underlay
-        dates={dates}
         minY={minY}
         maxY={maxY}
-        minX={minDate}
-        maxX={maxDate}
+        startDate={startDate}
+        numberOfMonths={numberOfMonths}
         step={step}
       />
       <Box width={width} height={height}>
         {data.map((item) => {
-          const i = new Date(item.date - minDate).getMonth();
+          const i = Math.round(
+            moment.duration(moment(item.date).diff(startDate)).asMonths()
+          );
           return (
             <Box
               key={item.id}

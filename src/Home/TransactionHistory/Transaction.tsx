@@ -1,3 +1,4 @@
+import moment from "moment";
 import React from "react";
 
 import { Box, Text } from "../../components";
@@ -29,9 +30,9 @@ const Transaction = ({ item }: TransactionProps) => {
           ></Box>
           <Text variant="title3">{`#${item.id}`}</Text>
         </Box>
-        <Text color="darkGrey">{`${item.value} - ${new Date(
-          item.date
-        ).toLocaleDateString()}`}</Text>
+        <Text color="darkGrey">{`${item.value} - ${moment(item.date).format(
+          "DD MMMM, YYYY"
+        )}`}</Text>
       </Box>
       <Box>
         <Text color="secondary" variant="button">

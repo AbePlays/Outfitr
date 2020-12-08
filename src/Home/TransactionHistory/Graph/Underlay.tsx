@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet } from "react-native";
+import moment from "moment";
 
 import { Box, Text, useTheme } from "../../../components";
 import { lerp } from "./Helper";
@@ -9,17 +10,22 @@ export const MARGIN = "xl";
 export const ROW_HEIGHT = 16;
 
 interface UnderlayProps {
-  dates: number[];
   minY: number;
   maxY: number;
   step: number;
-  minX: number;
-  maxX: number;
+  startDate: number;
+  numberOfMonths: number;
 }
 
-const Underlay = ({ dates, minY, maxY, step, minX, maxX }: UnderlayProps) => {
+const Underlay = ({
+  minY,
+  maxY,
+  step,
+  startDate,
+  numberOfMonths,
+}: UnderlayProps) => {
   const theme = useTheme();
-  const numberOfMonths = new Date(maxX - minX).getMonth();
+  const minDate = moment(startDate);
   return (
     <Box style={StyleSheet.absoluteFill}>
       <Box flex={1} justifyContent="space-between">
@@ -57,11 +63,11 @@ const Underlay = ({ dates, minY, maxY, step, minX, maxX }: UnderlayProps) => {
       >
         {new Array(numberOfMonths)
           .fill(0)
-          .map((_, i) => new Date(minX))
+          .map((_, i) => minDate.clone().add(i, "month"))
           .map((date, index) => (
             <Box key={index} width={step}>
               <Text color="darkGrey" textAlign="center">
-                {formatter.format(new Date(date))}
+                {date.format("MMM")}
               </Text>
             </Box>
           ))}

@@ -6,8 +6,8 @@ import { HomeNavigationProps } from "../../components/Navigation";
 import Graph, { DataPoint } from "./Graph";
 import Transaction from "./Transaction";
 
-const minDate = new Date("2019-09-01").getTime();
-const maxDate = new Date("2020-03-01").getTime();
+const startDate = new Date("2019-09-01").getTime();
+const numberOfMonths = 6;
 const data: DataPoint[] = [
   {
     date: new Date("2019-11-01").getTime(),
@@ -55,7 +55,11 @@ const TransactionHistory = ({
             <Text color="primary">All Time</Text>
           </Box>
         </Box>
-        <Graph data={data} minDate={minDate} maxDate={maxDate} />
+        <Graph
+          data={data}
+          startDate={startDate}
+          numberOfMonths={numberOfMonths}
+        />
         <ScrollView>
           {data.map((item) => (
             <Transaction key={item.id} item={item} />
