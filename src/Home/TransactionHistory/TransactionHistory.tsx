@@ -1,13 +1,28 @@
 import React from "react";
-import { ScrollView } from "react-native";
+import { Dimensions, Image, ScrollView, StyleSheet } from "react-native";
 
-import { Box, Header, Text } from "../../components";
+import { Box, Header, makeStyles, Text } from "../../components";
 import { HomeNavigationProps } from "../../components/Navigation";
+import { Theme } from "../../components/Theme";
+import TopCurve from "./TopCurve";
 import Graph, { DataPoint } from "./Graph";
 import Transaction from "./Transaction";
 
+const useStyles = makeStyles((theme: Theme) => ({
+  footer: {
+    ...StyleSheet.absoluteFillObject,
+    width: undefined,
+    height: undefined,
+    borderTopLeftRadius: theme.borderRadii.xl,
+  },
+  scrollView: {
+    paddingBottom: footerHeight,
+  },
+}));
+const footerHeight = Dimensions.get("window").width / 3;
 const startDate = new Date("2019-09-01").getTime();
 const numberOfMonths = 6;
+const aspectRatio = 3;
 const data: DataPoint[] = [
   {
     date: new Date("2019-11-01").getTime(),
@@ -32,6 +47,7 @@ const data: DataPoint[] = [
 const TransactionHistory = ({
   navigation,
 }: HomeNavigationProps<"OutfitIdeas">) => {
+  const styles = useStyles();
   return (
     <Box flex={1} backgroundColor="white">
       <Header
@@ -60,11 +76,27 @@ const TransactionHistory = ({
           startDate={startDate}
           numberOfMonths={numberOfMonths}
         />
-        <ScrollView>
+        <ScrollView
+          contentContainerStyle={styles.scrollView}
+          showsVerticalScrollIndicator={false}
+        >
           {data.map((item) => (
             <Transaction key={item.id} item={item} />
           ))}
         </ScrollView>
+      </Box>
+      <TopCurve footerHeight={footerHeight} />
+      <Box
+        position="absolute"
+        left={0}
+        right={0}
+        bottom={0}
+        height={footerHeight}
+      >
+        <Image
+          source={require("../../../assets/pattern3.png")}
+          style={styles.footer}
+        />
       </Box>
     </Box>
   );

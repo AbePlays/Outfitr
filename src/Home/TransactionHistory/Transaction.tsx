@@ -30,7 +30,7 @@ const Transaction = ({ item }: TransactionProps) => {
           ></Box>
           <Text variant="title3">{`#${item.id}`}</Text>
         </Box>
-        <Text color="darkGrey">{`${item.value} - ${moment(item.date).format(
+        <Text color="darkGrey">{`$${item.value} - ${moment(item.date).format(
           "DD MMMM, YYYY"
         )}`}</Text>
       </Box>
