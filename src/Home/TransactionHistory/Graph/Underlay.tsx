@@ -5,7 +5,6 @@ import moment from "moment";
 import { Box, Text, useTheme } from "../../../components";
 import { lerp } from "./Helper";
 
-const formatter = Intl.DateTimeFormat("en", { month: "short" });
 export const MARGIN = "xl";
 export const ROW_HEIGHT = 16;
 
@@ -46,11 +45,11 @@ const Underlay = ({
               }}
             >
               <Box width={theme.spacing[MARGIN]} paddingRight="s">
-                <Text color="darkGrey" textAlign="right">
+                <Text color="info" textAlign="right">
                   {Math.round(lerp(minY, maxY, item))}
                 </Text>
               </Box>
-              <Box flex={1} height={1} backgroundColor="grey"></Box>
+              <Box flex={1} height={1} backgroundColor="background2"></Box>
             </Box>
           );
         })}
@@ -66,7 +65,7 @@ const Underlay = ({
           .map((_, i) => minDate.clone().add(i, "month"))
           .map((date, index) => (
             <Box key={index} width={step}>
-              <Text color="darkGrey" textAlign="center">
+              <Text color="info" textAlign="center">
                 {date.format("MMM")}
               </Text>
             </Box>

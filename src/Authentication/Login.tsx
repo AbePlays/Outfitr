@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { BorderlessButton } from "react-native-gesture-handler";
+import { CommonActions } from "@react-navigation/native";
 
 import { Button, Container, Text } from "../components";
 import { Box } from "../components/Theme";
@@ -9,7 +10,6 @@ import Checkbox from "../components/Form/Checkbox";
 import TextInput from "../components/Form/TextInput";
 import Footer from "./components/Footer";
 import { AuthNavigationProps } from "../components/Navigation";
-import { CommonActions } from "@react-navigation/native";
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),

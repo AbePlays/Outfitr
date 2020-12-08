@@ -1,16 +1,16 @@
 import React, { useLayoutEffect, useRef } from "react";
 import { Dimensions } from "react-native";
 import moment from "moment";
-
-import { Box, useTheme } from "../../../components";
-import { Theme } from "../../../components/Theme";
-import { lerp } from "./Helper";
-import Underlay, { MARGIN } from "./Underlay";
 import {
   TransitioningView,
   Transition,
   Transitioning,
 } from "react-native-reanimated";
+
+import { Box, useTheme } from "../../../components";
+import { Theme } from "../../../components/Theme";
+import { lerp } from "./Helper";
+import Underlay, { MARGIN } from "./Underlay";
 
 const { width: wWidth } = Dimensions.get("window");
 const aspectRatio = 195 / 305;

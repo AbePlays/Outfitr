@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { BorderlessButton } from "react-native-gesture-handler";
+
 import { Box, Text } from "../../components";
 
 const INNER_RADIUS = 30;

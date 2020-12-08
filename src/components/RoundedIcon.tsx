@@ -5,10 +5,11 @@ import { Box, Theme, Text } from "./Theme";
 
 export interface RoundedIconProps {
   name: string;
-  iconRatio?: number;
+  iconRatio: number;
   size: number;
   color: keyof Theme["colors"];
-  backgroundColor: keyof Theme["colors"];
+  backgroundColor: keyof Theme["colors"] | undefined;
+  align: "center" | "flex-start" | "flex-end";
 }
 
 const RoundedIcon = ({
@@ -17,6 +18,7 @@ const RoundedIcon = ({
   size,
   color,
   backgroundColor,
+  align,
 }: RoundedIconProps) => {
   const iconSize = size * iconRatio;
   return (
@@ -24,7 +26,7 @@ const RoundedIcon = ({
       height={size}
       width={size}
       justifyContent="center"
-      alignItems="center"
+      alignItems={align}
       {...{ backgroundColor }}
       style={{ borderRadius: size / 2 }}
     >
@@ -35,6 +37,6 @@ const RoundedIcon = ({
   );
 };
 
-RoundedIcon.defaultProps = { iconRatio: 0.7 };
+RoundedIcon.defaultProps = { iconRatio: 0.7, align: "center" };
 
 export default RoundedIcon;

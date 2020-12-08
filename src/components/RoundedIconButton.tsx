@@ -15,6 +15,8 @@ const RoundedIconButton = ({ onPress, ...props }: RoundedIconButtonProps) => {
   );
 };
 
-RoundedIconButton.defaultProps = { iconRatio: 0.7 };
+RoundedIconButton.defaultProps = {
+  ...RoundedIcon.defaultProps,
+};
 
 export default RoundedIconButton;

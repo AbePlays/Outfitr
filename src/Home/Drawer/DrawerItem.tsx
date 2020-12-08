@@ -1,11 +1,11 @@
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { RectButton } from "react-native-gesture-handler";
+import { DrawerNavigationProp } from "@react-navigation/drawer";
 
 import { RoundedIcon } from "../../components";
 import { HomeRoutes } from "../../components/Navigation";
-import { Box, Theme, Text, useTheme, theme } from "../../components/Theme";
-import { DrawerNavigationProp } from "@react-navigation/drawer";
+import { Box, Theme, Text, useTheme } from "../../components/Theme";
 
 interface BaseDrawerItem {
   icon: string;

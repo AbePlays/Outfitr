@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  StyleSheet,
-  Dimensions,
-  ImageRequireSource,
-  Image,
-} from "react-native";
+import { StyleSheet, Dimensions, ImageRequireSource } from "react-native";
 import { PanGestureHandler } from "react-native-gesture-handler";
 import Animated, {
   add,
