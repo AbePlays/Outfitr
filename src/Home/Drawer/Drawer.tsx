@@ -1,9 +1,9 @@
-import { CommonActions } from "@react-navigation/native";
 import React from "react";
+import { CommonActions } from "@react-navigation/native";
 import { Dimensions, Image } from "react-native";
 
 import { Box, Header, Text } from "../../components";
-import { theme } from "../../components/Theme";
+import { useTheme } from "../../components/Theme";
 import DrawerItem, { DrawerItemProps } from "./DrawerItem";
 
 const { width } = Dimensions.get("window");
@@ -60,10 +60,11 @@ const items: DrawerItemProps[] = [
   },
 ];
 
-const Drawer = () => {
+const Drawer = ({ ...props }) => {
+  const theme = useTheme();
   return (
     <Box flex={1}>
-      <Box flex={0.2} backgroundColor="white">
+      <Box flex={0.2} backgroundColor="background">
         <Box
           position="absolute"
           top={0}
@@ -92,7 +93,7 @@ const Drawer = () => {
           right={0}
           bottom={0}
           left={0}
-          backgroundColor="white"
+          backgroundColor="background"
           borderTopLeftRadius="xl"
           borderBottomRightRadius="xl"
           justifyContent="center"
@@ -121,7 +122,7 @@ const Drawer = () => {
         </Box>
       </Box>
       <Box
-        backgroundColor="white"
+        backgroundColor="background"
         width={DRAWER_WIDTH}
         overflow="hidden"
         height={height * 0.61}

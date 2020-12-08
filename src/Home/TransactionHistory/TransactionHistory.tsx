@@ -49,7 +49,7 @@ const TransactionHistory = ({
 }: HomeNavigationProps<"OutfitIdeas">) => {
   const styles = useStyles();
   return (
-    <Box flex={1} backgroundColor="white">
+    <Box flex={1} backgroundColor="background">
       <Header
         title="Transaction History"
         left={{ icon: "menu", onPress: () => navigation.openDrawer() }}

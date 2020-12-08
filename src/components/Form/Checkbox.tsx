@@ -24,7 +24,7 @@ const Checkbox = ({ label, onChange, checked }: CheckboxProps) => {
           justifyContent="center"
           borderWidth={1}
           borderColor="primary"
-          backgroundColor={checked ? "primary" : "white"}
+          backgroundColor={checked ? "primary" : "background"}
           height={20}
           width={20}
         >

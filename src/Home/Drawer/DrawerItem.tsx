@@ -32,7 +32,7 @@ const DrawerItem = ({ icon, color, label, ...props }: DrawerItemProps) => {
     <RectButton
       style={{ borderRadius: theme.borderRadii.m }}
       onPress={() =>
-        props.screen
+        "screen" in props
           ? navigation.navigate(props.screen)
           : props.onPress(navigation)
       }
@@ -43,7 +43,7 @@ const DrawerItem = ({ icon, color, label, ...props }: DrawerItemProps) => {
           name={icon}
           size={36}
           backgroundColor={color}
-          color="white"
+          color="background"
         />
         <Text variant="button" color="secondary" marginLeft="m">
           {label}
