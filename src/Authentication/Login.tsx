@@ -9,6 +9,7 @@ import Checkbox from "../components/Form/Checkbox";
 import TextInput from "../components/Form/TextInput";
 import Footer from "./components/Footer";
 import { AuthNavigationProps } from "../components/Navigation";
+import { CommonActions } from "@react-navigation/native";
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
@@ -41,7 +42,17 @@ const Login = ({ navigation }: AuthNavigationProps<"Login">) => {
       password: "",
       remember: true,
     },
-    onSubmit: () => navigation.navigate("Home"),
+    onSubmit: () =>
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [
+            {
+              name: "Home",
+            },
+          ],
+        })
+      ),
     validationSchema: LoginSchema,
   });
   return (
