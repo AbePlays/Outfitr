@@ -74,7 +74,7 @@ const theme = {
     body: {
       fontSize: 16,
       lineHeight: 24,
-      fontWeight: "600",
+      fontWeight: "400",
       color: "text",
     },
     button: {
