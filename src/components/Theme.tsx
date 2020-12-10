@@ -24,6 +24,7 @@ const theme = {
     info: "#808080",
     secondary: "#0c0d34",
     text: "rgba(12, 13, 52, 0.7)",
+    textContrast: palette.white,
     background: palette.white,
     background2: "#f4f0ef",
     danger: "red",
