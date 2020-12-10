@@ -1,5 +1,9 @@
 import React from "react";
-import { CommonActions } from "@react-navigation/native";
+import {
+  CommonActions,
+  DrawerActions,
+  useNavigation,
+} from "@react-navigation/native";
 import { Dimensions, Image } from "react-native";
 
 import { Box, Header, Text } from "../../components";
@@ -61,6 +65,7 @@ const items: DrawerItemProps[] = [
 ];
 
 const Drawer = ({ ...props }) => {
+  const navigation = useNavigation();
   const theme = useTheme();
   return (
     <Box flex={1}>
@@ -79,9 +84,12 @@ const Drawer = ({ ...props }) => {
             title="Menu"
             left={{
               icon: "x",
-              onPress: () => true,
+              onPress: () => navigation.dispatch(DrawerActions.closeDrawer()),
             }}
-            right={{ icon: "shopping-bag", onPress: () => true }}
+            right={{
+              icon: "shopping-bag",
+              onPress: () => navigation.navigate("Cart"),
+            }}
           />
         </Box>
       </Box>

@@ -8,7 +8,7 @@ export interface RoundedIconProps {
   iconRatio: number;
   size: number;
   color: keyof Theme["colors"];
-  backgroundColor: keyof Theme["colors"] | undefined;
+  backgroundColor?: keyof Theme["colors"];
   align: "center" | "flex-start" | "flex-end";
 }
 
