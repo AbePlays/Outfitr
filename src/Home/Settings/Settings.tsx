@@ -1,13 +1,13 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 
-import { Box, Header, ContentFooter } from "../../components";
+import { Box, Header, Content } from "../../components";
 import { HomeNavigationProps } from "../../components/Navigation";
 import Notification from "./Notification";
 
 const Settings = ({ navigation }: HomeNavigationProps<"Settings">) => {
   return (
-    <ContentFooter>
+    <Content>
       <Box backgroundColor="background">
         <Header
           title="Notifications"
@@ -32,7 +32,7 @@ const Settings = ({ navigation }: HomeNavigationProps<"Settings">) => {
           />
         </Box>
       </Box>
-    </ContentFooter>
+    </Content>
   );
 };
 

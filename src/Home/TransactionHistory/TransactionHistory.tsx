@@ -1,10 +1,15 @@
 import React from "react";
-import { Dimensions, Image, ScrollView, StyleSheet } from "react-native";
+import { Dimensions, ScrollView, StyleSheet } from "react-native";
 
-import { Box, Header, makeStyles, Text } from "../../components";
+import {
+  Box,
+  ScrollableContent,
+  Header,
+  makeStyles,
+  Text,
+} from "../../components";
 import { HomeNavigationProps } from "../../components/Navigation";
 import { Theme } from "../../components/Theme";
-import TopCurve from "./TopCurve";
 import Graph, { DataPoint } from "./Graph";
 import Transaction from "./Transaction";
 
@@ -49,56 +54,45 @@ const TransactionHistory = ({
 }: HomeNavigationProps<"OutfitIdeas">) => {
   const styles = useStyles();
   return (
-    <Box flex={1} backgroundColor="background">
-      <Header
-        title="Transaction History"
-        left={{ icon: "menu", onPress: () => navigation.openDrawer() }}
-        right={{ icon: "share", onPress: () => true }}
-      />
-      <Box padding="m" flex={1}>
-        <Box
-          flexDirection="row"
-          justifyContent="space-between"
-          alignItems="flex-end"
-        >
-          <Box>
-            <Text variant="header" color="secondary" opacity={0.3}>
-              TOTAL SPENT
-            </Text>
-            <Text variant="title1">$619,19</Text>
+    <ScrollableContent>
+      <Box flex={1} backgroundColor="background">
+        <Header
+          title="Transaction History"
+          left={{ icon: "menu", onPress: () => navigation.openDrawer() }}
+          right={{ icon: "share", onPress: () => true }}
+        />
+        <Box padding="m" flex={1}>
+          <Box
+            flexDirection="row"
+            justifyContent="space-between"
+            alignItems="flex-end"
+          >
+            <Box>
+              <Text variant="header" color="secondary" opacity={0.3}>
+                TOTAL SPENT
+              </Text>
+              <Text variant="title1">$619,19</Text>
+            </Box>
+            <Box backgroundColor="primaryLight" borderRadius="m" padding="s">
+              <Text color="primary">All Time</Text>
+            </Box>
           </Box>
-          <Box backgroundColor="primaryLight" borderRadius="m" padding="s">
-            <Text color="primary">All Time</Text>
-          </Box>
+          <Graph
+            data={data}
+            startDate={startDate}
+            numberOfMonths={numberOfMonths}
+          />
+          <ScrollView
+            contentContainerStyle={styles.scrollView}
+            showsVerticalScrollIndicator={false}
+          >
+            {data.map((item) => (
+              <Transaction key={item.id} item={item} />
+            ))}
+          </ScrollView>
         </Box>
-        <Graph
-          data={data}
-          startDate={startDate}
-          numberOfMonths={numberOfMonths}
-        />
-        <ScrollView
-          contentContainerStyle={styles.scrollView}
-          showsVerticalScrollIndicator={false}
-        >
-          {data.map((item) => (
-            <Transaction key={item.id} item={item} />
-          ))}
-        </ScrollView>
       </Box>
-      <TopCurve footerHeight={footerHeight} />
-      <Box
-        position="absolute"
-        left={0}
-        right={0}
-        bottom={0}
-        height={footerHeight}
-      >
-        <Image
-          source={require("../../../assets/pattern3.png")}
-          style={styles.footer}
-        />
-      </Box>
-    </Box>
+    </ScrollableContent>
   );
 };
 
