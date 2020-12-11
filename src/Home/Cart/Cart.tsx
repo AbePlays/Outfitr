@@ -25,12 +25,29 @@ const Cart = ({ navigation }: HomeNavigationProps<"Cart">) => {
             left={{ icon: "arrow-left", onPress: () => navigation.goBack() }}
           />
         </Box>
+      </Box>
+      <Box flex={1}>
+        <ScrollView
+          contentContainerStyle={{
+            paddingTop: 50 * aspectRatio,
+          }}
+          style={{
+            borderBottomLeftRadius: theme.borderRadii.xl,
+            borderBottomRightRadius: theme.borderRadii.xl,
+          }}
+          showsVerticalScrollIndicator={false}
+        >
+          <Item />
+          <Item />
+          <Item />
+          <Item />
+        </ScrollView>
         <Box
           style={{
             position: "absolute",
             left: 0,
             right: 0,
-            bottom: -height,
+            top: 0,
             height: height,
           }}
         >
@@ -42,19 +59,6 @@ const Cart = ({ navigation }: HomeNavigationProps<"Cart">) => {
           </Text>
         </Box>
       </Box>
-
-      <ScrollView
-        style={{
-          borderBottomLeftRadius: theme.borderRadii.xl,
-          borderBottomRightRadius: theme.borderRadii.xl,
-        }}
-        showsVerticalScrollIndicator={false}
-      >
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-      </ScrollView>
     </CartContainer>
   );
 };
