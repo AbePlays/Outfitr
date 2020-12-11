@@ -1,5 +1,5 @@
-import { DrawerActions } from "@react-navigation/native";
 import React from "react";
+import { DrawerActions } from "@react-navigation/native";
 import { Dimensions } from "react-native";
 
 import { Box, Header, Text, useTheme } from "../../components";

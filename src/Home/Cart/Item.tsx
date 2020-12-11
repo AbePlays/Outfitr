@@ -1,9 +1,7 @@
 import React from "react";
 
 import { Box, Text } from "../../components";
-import { palette, useTheme } from "../../components/Theme";
-
-interface ItemProps {}
+import { useTheme } from "../../components/Theme";
 
 const Item = () => {
   const theme = useTheme();

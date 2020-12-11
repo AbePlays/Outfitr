@@ -1,5 +1,4 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
 
 import { Box, Header, Content } from "../../components";
 import { HomeNavigationProps } from "../../components/Navigation";
